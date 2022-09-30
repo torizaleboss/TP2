@@ -5,28 +5,38 @@ Description : TP2 - Jeu de devinette
 
 """""
 
-boucle_jeu = True
 import random
 
-nombre_aleatoire = random.randint(0, 100)
-print("J'ai choisi un nombre au hasard entre 0 et 100")
-print("À vous de deviner !")
 
-def jeu():
-    essai = input(int("Entrez un nombre: "))
-    if nombre_aleatoire == essai:
-        print("Égalité! Vous avez gagné!")
-        rejouer = input(str("Voulez-vous rejouer? Oui ou Non?"))
-        if rejouer = "Oui":
-            jeu()
-        else:
-            boucle_jeu = False
-    elif essai < nombre_aleatoire:
-        print("Raté, pensez plus grand")
-        jeu()
-    elif essai > nombre_aleatoire:
-        print("Raté, pensez plus petit")
-        jeu()
+start_jeu = True
+boucle_jeu = True
+nb_maximum = 100
+nb_minimum = 0
 
-while boucle_jeu:
 
+def bornes():
+    global nb_minimum, nb_maximum
+    nb_maximum = int(input("Décidez le nombre maximal que je peux atteindre : "))
+    nb_minimum = int(input("Décidez le nombre minimal que je peux atteindre : "))
+
+while start_jeu:
+    print("Bienvenue! Je vais choisir un nombre aléatoirement, vous avez pour but de le trouver. ")
+    bornes()
+    nombre_aleatoire = random.randint(nb_minimum, nb_maximum)
+    print(f"J'ai choisi mon nombre au hasard entre {nb_minimum} et {nb_maximum}")
+    print("À vous de deviner !")
+    while boucle_jeu == True:
+        essai = int(input(str("Entrez un nombre: ")))
+        if essai < nombre_aleatoire:
+            print("Oups! Le nombre est plus grand.")
+        elif essai > nombre_aleatoire:
+            print("Ouille. Le nombre est plus petit.")
+        elif essai == nombre_aleatoire:
+            print("Bravo! Vous avez trouvé le nombre!")
+            rejouer = input("Voulez-vous rejouer? (Oui ou Non): ")
+            if rejouer == "Oui":
+                boucle_jeu = False
+            else:
+                print("Merci de votre participation.")
+                boucle_jeu = False
+                start_jeu = False
