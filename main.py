@@ -1,12 +1,10 @@
-"""""
+"""
 Programme fait par Alexandre Toriz
 Groupe 023
 Description : TP2 - Jeu de devinette
-
-"""""
+"""
 
 import random
-
 
 start_jeu = True
 boucle_jeu = True
@@ -16,8 +14,15 @@ nb_minimum = 0
 
 def bornes():
     global nb_minimum, nb_maximum
-    nb_maximum = int(input("Décidez le nombre maximal que je peux atteindre : "))
     nb_minimum = int(input("Décidez le nombre minimal que je peux atteindre : "))
+    nb_maximum = int(input("Décidez le nombre maximal que je peux atteindre : "))
+
+    """""
+    
+    Cette fonction est invoquée lorsqu'il faut que le jeu recommence une nouvelle fois.
+    Elle sert a définir les bornes du nombre aléatoire que l'ordinateur sélectionne, en tenant compte des limites du joueur.
+    
+    """""
 
 while start_jeu:
     print("Bienvenue! Je vais choisir un nombre aléatoirement, vous avez pour but de le trouver. ")
@@ -25,6 +30,7 @@ while start_jeu:
     nombre_aleatoire = random.randint(nb_minimum, nb_maximum)
     print(f"J'ai choisi mon nombre au hasard entre {nb_minimum} et {nb_maximum}")
     print("À vous de deviner !")
+    boucle_jeu = True
     while boucle_jeu == True:
         essai = int(input(str("Entrez un nombre: ")))
         if essai < nombre_aleatoire:
